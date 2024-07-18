@@ -30,8 +30,10 @@ const productSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  related:[Schema.Types.ObjectId]
 });
+productSchema.index({ name: 'text', category: 'text',description: 'text'});
 
 const Product = mongoose.model('Product', productSchema);
 

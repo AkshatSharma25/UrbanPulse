@@ -3,9 +3,8 @@ const Product = require("../models/ProductModel");
 const ProductController = {
   CreateProduct: async (req, res, next) => {
     try {
-      const { name, imageUrl, price, category, description, stockQuantity } =
+      const { name, imageUrl, price, category, description, stockQuantity} =
         req.body;
-
       const newProduct = new Product({
         name,
         imageUrl,
@@ -23,12 +22,27 @@ const ProductController = {
       next(error);
     }
   },
+  Fetch:async(req, res, next) => {
+    try{
+      const id=req.params.id;
+      const product = await Product.findById(id);
+      if(product){
+        res.status(200).send({success:true,data:product});
+      }
+      else{
+        res.status(404).send({success:false,message:"no product found!"});
+      }
+    }
+    catch(error){
+      next(error);
+    }
+  },
   FetchByCategory: async (req, res, next) => {
     try {
-      const { category } = req.body;
+      const { category } = req.params;
+      console.log(category);
       const FoundProducts = await Product.find({ category: category });
       if (FoundProducts) {
-        // console.log(FoundProducts);
         res.status(200).send({ success: true, data: FoundProducts });
       } else {
         res
@@ -63,6 +77,21 @@ const ProductController = {
       next(error);
     }
   },
+  SearchByKeyword: async (req, res, next) => {
+    try {
+      const { keyword } = req.params;
+      const FoundProducts = await Product.find({
+        $text: { $search: keyword },
+      });
+      if (FoundProducts) {
+        res.status(200).send({ success: true, data: FoundProducts });
+      } else {
+        res.status(404).send({ success: false, message: "No products found" });
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
 };
 
 module.exports = ProductController;

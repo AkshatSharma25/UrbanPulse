@@ -1,62 +1,62 @@
 export const Categories = [
     { 
       id: 1, 
-      title: "Electronics", 
+      title: "electronics", 
       description: "Electronics category" 
     },
     { 
       id: 2, 
-      title: "Clothing", 
+      title: "clothing", 
       description: "Clothing category" 
     },
     { 
       id: 3, 
-      title: "Beauty & Health", 
+      title: "beauty & health", 
       description: "Beauty & Health category" 
     },
     { 
       id: 4, 
-      title: "Books", 
+      title: "books", 
       description: "Books category" 
     },
     { 
       id: 5, 
-      title: "Home & Kitchen", 
+      title: "home & kitchen", 
       description: "Home & Kitchen category" 
     },
     { 
       id: 6, 
-      title: "Sports & Outdoors", 
+      title: "sports & outdoors", 
       description: "Sports & Outdoors category" 
     },
     { 
       id: 7, 
-      title: "Toys & Games", 
+      title: "toys & games", 
       description: "Toys & Games category" 
     },
     { 
       id: 8, 
-      title: "Baby & Kids", 
+      title: "baby & kids", 
       description: "Baby & Kids category" 
     },
     { 
       id: 9, 
-      title: "Home & Garden", 
+      title: "home & garden", 
       description: "Home & Garden category" 
     },
     { 
       id: 10, 
-      title: "Pet Care", 
+      title: "pet care", 
       description: "Pet Care category" 
     },
     { 
       id: 11, 
-      title: "Travel & Lifestyle", 
+      title: "travel & lifestyle", 
       description: "Travel & Lifestyle category" 
     },
     { 
       id: 12, 
-      title: "Business & Industrial", 
+      title: "business & industrial", 
       description: "Business & Industrial category" 
     }
   ];

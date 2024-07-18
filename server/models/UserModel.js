@@ -9,6 +9,11 @@ const userSchema = new Schema({
     trim: true,
     minlength: 3
   },
+  address:{
+    type: String,
+    default:'',
+    lowercase:true,
+  },
   email: {
     type: String,
     required: true,
@@ -28,6 +33,10 @@ const userSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  profilePicture: {
+    type: String,
+    default: ''
   }
 });
 
