@@ -37,6 +37,22 @@ const userSchema = new Schema({
   profilePicture: {
     type: String,
     default: ''
+  },
+  orders:{
+    type: [Schema.Types.ObjectId],
+    ref: 'Order'
+  },
+  isSeller:{
+    type: Boolean,
+    default: false
+  },
+  soldProducts:{
+    type: [Schema.Types.ObjectId],
+    ref: 'Product'
+  },
+  cart:{
+    type: Schema.Types.ObjectId,
+    ref: 'ShoppingCart'
   }
 });
 

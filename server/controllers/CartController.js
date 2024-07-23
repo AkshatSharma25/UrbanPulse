@@ -1,11 +1,15 @@
 const ShoppingCart = require("../models/CartModel");
+const User = require("../models/UserModel");
 const Product = require("../models/ProductModel");
 const CartController = {
   CreateCart: async (req, res, next) => {
     try {
       const { user } = req.body;
+      console.log(req.body);
+      
       const IfExist = await ShoppingCart.find({ user: user });
       // console.log(IfExist);
+      
       if (IfExist.length != 0) {
         res
           .status(400)
@@ -16,7 +20,17 @@ const CartController = {
       } else {
         const newCart = new ShoppingCart({ user });
         const savedCart = await newCart.save();
-        res.status(200).send({ success: true, data: savedCart });
+        const updatedUser=await User.findByIdAndUpdate(user,{$set:{cart:savedCart._id}},{new:true});
+        const newObj={
+          username: updatedUser.username,
+          email: updatedUser.email,
+          profilePicture: updatedUser.profilePicture,
+          createdAt: updatedUser.createdAt,
+          address: updatedUser.address,
+          _id: updatedUser._id,
+          cart: savedCart._id,
+        }
+        res.status(200).send({ success: true, data: newObj });
       }
     } catch (error) {
       console.error("Error creating cart:", error.message);
@@ -25,18 +39,16 @@ const CartController = {
   },
   AddToCart: async (req, res, next) => {
     try {
-      const { user, product, quantity } = req.body;
+      const { user, product, } = req.body;
       const fetchProduct = await Product.findById(product);
       const productPrice = fetchProduct.price;
       const cart = await ShoppingCart.findOneAndUpdate(
         { user: user },
         {
-          $inc: { totalPrice: quantity * productPrice },
+          
           $push: {
             items: {
               product: product,
-              quantity: quantity,
-              totalPrice: quantity * productPrice,
             },
           },
         },

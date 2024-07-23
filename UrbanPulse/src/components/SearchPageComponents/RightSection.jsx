@@ -6,7 +6,7 @@ const RightSection = () => {
   const loader=useSelector((state)=>state.loader.isLoading);
   const items = useSelector((state) => state.items.items);
   let content;
-  console.log(loader);
+  // console.log(loader);
   if(loader==0){
     content=<div className="flex justify-center items-center w-full">{"Search Anything"}</div>
   }

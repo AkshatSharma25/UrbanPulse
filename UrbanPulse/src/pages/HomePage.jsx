@@ -6,7 +6,7 @@ import NavBar from '../components/Navbar'
 import { MainCarousel } from "../components/MainCarousel/MainCarousel";
 import ProductSectionCarousel from "../components/ProductCarousel/ProductCarousel";
 const HomePage = () => {
-  const Catelogue=Categories.slice(0,1);
+  const Catelogue=Categories.slice(0,3);
   return (
     <div>
       <NavBar />

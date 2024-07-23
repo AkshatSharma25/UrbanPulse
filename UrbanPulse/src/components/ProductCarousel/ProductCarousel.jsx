@@ -34,15 +34,15 @@ const ProductSectionCarousel = (props) => {
       category={product.category}
       name={product.name}
       price={product.price}
-      imageUrl={product.imageUrl}
+      imageUrl={product.imageUrls[0]}
     />
   ));
   return (
-    <div className={`pt-6 lg:pl-16 text-gray-600 body-font w-full ${props.black?"text-black":""}`}>
+    <div className={`pt-6 lg:pl-16  body-font w-full `}>
       <div className="container">
-        <div className={`text-white text-2xl ${props.black?"text-black":""} flex gap-2 items-center`}>
+        <div className={` text-2xl  flex gap-2 items-center`}>
           {props.title.toUpperCase()}
-          <img src={RightArrow} alt="" />
+          <img src={RightArrow} className={`invert`} alt="" />
         </div>
         {isLoading ? (
           <div>Loading...</div>

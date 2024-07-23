@@ -1,12 +1,23 @@
 const User=require("../models/UserModel");
-
+const bcrypt=require("bcrypt");
+const Order=require("../models/OrderModel");
 const UserController={
     CreateUser:async(req,res,next)=>{
         try{
             const {username,email,password,profilePicture,address}=req.body;
-            const newUser=new User({username,email,password,address,profilePicture});
+            const hashedPassword=await bcrypt.hash(password,10);
+            const newUser=new User({username,email,password:hashedPassword,address,profilePicture});
             const savedUser=await newUser.save();
-            res.status(200).send({success:true,data:savedUser});
+            const newObj={
+                username:savedUser.username,
+                email:savedUser.email,
+                profilePicture: savedUser.profilePicture,
+                createdAt: savedUser.createdAt,
+                address: savedUser.address,
+                _id: savedUser._id,
+                cart: savedUser.cart,
+            }
+            res.status(200).send({success:true,data:newObj});
         }
         catch(error){
             console.error("Error creating user:",error.message);
@@ -19,7 +30,16 @@ const UserController={
 
             const updatedUser=await User.findByIdAndUpdate(id,req.body,{new:true});
             if(updatedUser){
-                res.status(200).send({success:true,data:updatedUser});
+                const newObj={
+                    username:updatedUser.username,
+                    email:updatedUser.email,
+                    profilePicture: updatedUser.profilePicture,
+                    createdAt: updatedUser.createdAt,
+                    address: updatedUser.address,
+                    _id: updatedUser._id,
+                    cart: updatedUser.cart,
+                }
+                res.status(200).send({success:true,data:newObj});
             }
             else{
                 res.status(404).send({success:false,message:"User not found"});
@@ -33,19 +53,25 @@ const UserController={
     GetUser:async(req,res,next)=>{
         try{
             const {email,password}=req.params;
-            console.log(req.params)
-            console.log(email,password);
-            let foundUser=await User.find({email:email,password:password});
+            let foundUser=await User.find({email:email});
             if(foundUser.length!==0){
-                console.log(foundUser)
-                const newObj={
-                    username:foundUser[0]["username"],
-                    email:foundUser[0]["email"],
-                    profilePicture:foundUser[0]["profilePicture"],
-                    createdAt:foundUser[0]["createdAt"],
-                    address:foundUser[0]["address"]
+                const comparePassword=await bcrypt.compare(password,foundUser[0].password);
+
+                if(comparePassword===true){
+                    const newObj={
+                        username:foundUser[0]["username"],
+                        email:foundUser[0]["email"],
+                        profilePicture:foundUser[0]["profilePicture"],
+                        createdAt:foundUser[0]["createdAt"],
+                        address:foundUser[0]["address"],
+                        _id:foundUser[0]["_id"],
+                        cart: foundUser[0]["cart"],
+                    }
+                    res.status(200).send({success:true,data:newObj});
                 }
-                res.status(200).send({success:true,data:newObj});
+                else{
+                    res.status(401).send({success:false,message:"Invalid Password"});
+                }
             }
             else{
                 res.status(404).send({success:false,message:"User not found"});
@@ -53,6 +79,35 @@ const UserController={
         }
         catch(error){
             console.error("Error getting user:",error.message);
+            next(error);
+        }
+    },
+    getOrders:async (req,res,next)=>{
+        const user=req.params.user;
+        try{
+            const foundUser=await User.findById(user);
+            if(foundUser){
+                let myOrders=[];
+                foundUser.orders.forEach(async (order)=>{
+                    const newOrder=await Order.findById(order);
+                    myOrders.push(1);
+                }).then(myOrder=>{
+
+                    console.log(myOrders);
+                    res.status(200).send({success:true,data:myOrders});
+                }).catch(error=>{
+                    console.error("Error getting orders:",error.message);
+                    next(error);
+                })
+                
+                    
+            }
+            else{
+                res.status(404).send({success:false,message:"User not found"});
+            }
+        }
+        catch(error){
+            console.error("Error getting orders:",error.message);
             next(error);
         }
     }

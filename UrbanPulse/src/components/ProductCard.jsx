@@ -12,7 +12,7 @@ const ProductCard = ({id, category, name, price, imageUrl}) => {
     }
   }
   return (
-    <div onClick={handleOnClick} className="p-2 m-3 rounded-lg bg-[#478CCF]">
+    <div onClick={handleOnClick} className="p-2 m-3 w-[350px] overflow-hidden rounded-lg bg-[#478CCF]">
       <a
         href="#"
         className="w-full block relative h-80 rounded overflow-hidden "

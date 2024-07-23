@@ -5,8 +5,10 @@ import ProductPage from './pages/ProductPage'
 import ProfilePage from './pages/UserProfile'
 import LoginPage from './pages/LoginPage'
 import SearchPage from './pages/SearchPage'
+import OrderSummaryPage from './pages/OrderSummaryPage'
 import FileUploadForm from './components/UploadAvatar'
 import InternalServerErrorPage from './pages/InternalServerErrorPage'
+import TrackOrderPage from './pages/TrackOrderPage'
 function App() {
 
   const router=createBrowserRouter([
@@ -28,6 +30,12 @@ function App() {
     },{
       path:"/login",
       element:<LoginPage />
+    },{
+      path:"/order/:id",
+      element:<OrderSummaryPage />
+    },{
+      path:"/profile/orders/:id",
+      element:<TrackOrderPage />
     }
   ]);
   return (

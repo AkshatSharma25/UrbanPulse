@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SearchProduct } from "../utils/APIroutes";
 import axios from "axios";
 import homeSvg from "../assets/home.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../redux/search/searchItemSlice";
+import { setText, clearText } from '../redux/search/footerLinkSlice';
 import {
   startLoading,
   stopLoading,
@@ -12,12 +13,10 @@ import {
 import search from "../assets/search.svg";
 import { useNavigate } from "react-router-dom";
 
-
-
-
 const SearchBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const text = useSelector((state) => state.text.text);
   const loader = useSelector((state) => state.loader.isLoading);
   const items = useSelector((state) => state.items.items);
   const handleSubmit = async (e) => {
@@ -33,6 +32,21 @@ const SearchBar = () => {
   const handleHomeClick=()=>{
     navigate("/");
   }
+  useEffect(()=>{
+    const searchFromFooter=async()=>{
+      if(text!==""){
+        const products = await axios.get(
+          `${SearchProduct}/${text}`
+        );
+        products.data.data.map((product) => {
+          dispatch(addItem(product));
+        });
+        if (products.data.data.length > 0) dispatch(toggleLoading());
+      }
+    }
+    dispatch(setText("iphone"));
+    searchFromFooter();
+  },[])
   return (
     <div>
       <div className="flex justify-center items-center w-full bg-blue-950">

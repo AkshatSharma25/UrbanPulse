@@ -9,6 +9,7 @@ const Upload=require("./MulterConfig");
 const ProductRouter=require("./routes/ProductRoute");
 const UserRouter=require("./routes/UserRoute");
 const CartRouter=require("./routes/CartRoute");
+const OrderRouter=require("./routes/OrderRoute");
 const app = express();
 
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -19,7 +20,7 @@ app.use(express.json());
 app.use("/api/products",ProductRouter);
 app.use("/api/users",UserRouter);
 app.use("/api/carts",CartRouter);
-
+app.use("/api/orders",OrderRouter);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const PORT=process.env.PORT;
