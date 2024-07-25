@@ -13,7 +13,7 @@ import search from "../../assets/search.svg";
 import home from "../../assets/home.svg";
 import { useNavigate } from "react-router-dom";
 import piggyBank from "../../assets/piggy_bank.svg";
-const LeftSection = ({ username, email, address, profilePicture }) => {
+const LeftSection = ({id, username, email, address, profilePicture }) => {
   const [windowContent, setwindowContent] = useState();
 
   const isOpen = useSelector((state) => state.windowToggle.isOpen);
@@ -21,6 +21,9 @@ const LeftSection = ({ username, email, address, profilePicture }) => {
 
   const navitage = useNavigate();
   const time = new Date();
+  const handleTrackOrder=()=>{
+    navitage(`/profile/orders/${id}`)
+  }
   useEffect(() => {
     let displayWindowContent=(
       <div><div className="flex justify-center items-center mt-32 mb-4 ml-10 mr-10">
@@ -91,10 +94,7 @@ const LeftSection = ({ username, email, address, profilePicture }) => {
           </div>
         </div>
 
-        <div className="p-4 gap-2 flex items-center justify-center cursor-pointer text-xl">
-          <img src={edit} className="invert" alt="" />
-          Change Profile Picture
-        </div>
+        
         <div
           onClick={() => navitage("/")}
           className="p-4 gap-2 flex items-center justify-center cursor-pointer text-xl"
@@ -102,7 +102,7 @@ const LeftSection = ({ username, email, address, profilePicture }) => {
           <img src={home} className="invert" alt="" />
           Home
         </div>
-        <div className="p-4 gap-2 flex items-center justify-center cursor-pointer text-xl">
+        <div  onClick={()=>{handleTrackOrder()}} className="p-4 gap-2 flex items-center justify-center cursor-pointer text-xl">
           <img src={compass} className="invert" alt="" />
           Track Your Orders
         </div>

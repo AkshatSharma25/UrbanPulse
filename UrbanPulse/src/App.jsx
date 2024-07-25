@@ -6,7 +6,7 @@ import ProfilePage from './pages/UserProfile'
 import LoginPage from './pages/LoginPage'
 import SearchPage from './pages/SearchPage'
 import OrderSummaryPage from './pages/OrderSummaryPage'
-import FileUploadForm from './components/UploadAvatar'
+import CartPage from './pages/CartPage'
 import InternalServerErrorPage from './pages/InternalServerErrorPage'
 import TrackOrderPage from './pages/TrackOrderPage'
 function App() {
@@ -36,6 +36,9 @@ function App() {
     },{
       path:"/profile/orders/:id",
       element:<TrackOrderPage />
+    },{
+      path:"/cart/",
+      element:<CartPage />
     }
   ]);
   return (

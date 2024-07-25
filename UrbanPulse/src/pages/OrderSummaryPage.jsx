@@ -162,7 +162,7 @@ const OrderSummaryPage = () => {
                     }}
                     className="cursor-pointer text-red-400 bg-blue-200 rounded-md text-xl text-center m-3"
                   >
-                    Cancel Order
+                    Cancel
                   </div>
                 </div>
               </div>
@@ -173,6 +173,9 @@ const OrderSummaryPage = () => {
               </div>
               <div className="m-2 text-xl w-full text-center text-red-400">
                 Subtotal : ₹ {Product.price * quantity}
+              </div>
+              <div className="m-2 text-xl w-full text-center text-red-400">
+                Please Select Payment Option
               </div>
               <div className="bg-blue-400 w-full h-20 m-2 p-3 rounded-md">
                 PayPal

@@ -6,3 +6,7 @@ export const loginUrl=`${host}/api/users/login`;
 export const createCart=`${host}/api/carts/create`;
 export const addToCart=`${host}/api/carts/addtocart`;
 export const orderProduct=`${host}/api/orders/create`;
+export const getOrders=`${host}/api/users/getorders`;
+export const deleteOrder=`${host}/api/orders/delete`;
+export const getCartItems=`${host}/api/carts/getallitems`;
+export const removeItemFromCart=`${host}/api/carts/removefromcart`;

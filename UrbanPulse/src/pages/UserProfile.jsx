@@ -4,11 +4,7 @@ import defaultProfile from "../assets/account.svg";
 import LeftSection from "../components/ProfilePageComponents/LeftSection";
 import RightSection from "../components/ProfilePageComponents/RightSection";
 
-
 const ProfilePage = () => {
-
-
-
   const navigate = useNavigate();
   const [profileImage, setprofileImage] = useState(
     "https://api.multiavatar.com/45678945/4"
@@ -27,6 +23,7 @@ const ProfilePage = () => {
           setprofileImage(defaultProfile);
         }
       }
+      // console.log(user._id);
       setLoading(false);
     };
     MyParse();
@@ -34,6 +31,7 @@ const ProfilePage = () => {
   const content = (
     <div className="flex">
       <LeftSection
+        id={user._id}
         username={user.username}
         profilePicture={profileImage}
         email={user.email}

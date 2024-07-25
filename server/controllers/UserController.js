@@ -88,19 +88,15 @@ const UserController={
             const foundUser=await User.findById(user);
             if(foundUser){
                 let myOrders=[];
-                foundUser.orders.forEach(async (order)=>{
-                    const newOrder=await Order.findById(order);
-                    myOrders.push(1);
-                }).then(myOrder=>{
-
-                    console.log(myOrders);
-                    res.status(200).send({success:true,data:myOrders});
-                }).catch(error=>{
-                    console.error("Error getting orders:",error.message);
-                    next(error);
-                })
+                for(let order of foundUser.orders){
+                    // console.log(order)
+                    const orderDetails=await Order.findById(order);
+                    if(orderDetails){
+                        myOrders.push(orderDetails);
+                    }
+                }
+                res.status(200).send({success:true,data:myOrders});
                 
-                    
             }
             else{
                 res.status(404).send({success:false,message:"User not found"});

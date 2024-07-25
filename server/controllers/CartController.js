@@ -60,6 +60,43 @@ const CartController = {
       next(error);
     }
   },
+  getAllItems:async(req,res,next)=>{
+    try{
+      // console.log(req.body);
+      const {id}=req.params;
+      console.log(id);
+
+      const cart=await ShoppingCart.find({user:id});
+      console.log(cart);
+
+      res.status(200).send({ success: true, data: cart});
+    }
+    catch(error){
+      console.error("Error getting all items:",error.message);
+      next(error);
+    }
+  },
+  RemoveFromCart: async (req, res, next) => {
+    try {
+      const { user, product, } = req.body;
+      const cart = await ShoppingCart.findOneAndUpdate(
+        { user: user },
+        {
+          
+          $pull: {
+            items: {
+              product: product,
+            },
+          },
+        },
+        { new: true, upsert: true }
+      );
+      res.status(200).send({ success: true, data: cart });
+    } catch (error) {
+      console.error("Error adding to cart:", error.message);
+      next(error);
+    }
+  },
 };
 
 module.exports = CartController;

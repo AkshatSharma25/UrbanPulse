@@ -35,12 +35,12 @@ const OrderController = {
             user,
           });
           await newOrder.save();
-          const updateUser=await User.findByIdAndUpdate(user,{
+          const updateUser = await User.findByIdAndUpdate(user, {
             $push: {
               orders: newOrder._id,
             },
           });
-          await updateUser.save({new:true});
+          await updateUser.save({ new: true });
           if (newOrder) {
             res.status(200).send({ success: true, data: newOrder });
           } else {
@@ -56,6 +56,27 @@ const OrderController = {
       }
     } catch (error) {
       console.error("Error creating order:", error.message);
+      next(error);
+    }
+  },
+  deleteOrder: async (req,res,next) => {
+    try {
+      const { orderId } = req.params;
+      // console.log(orderId);
+      const deleteOrder = await order.findByIdAndDelete(orderId);
+      // console.log(deleteOrder)
+      if (deleteOrder) {
+        const userId=deleteOrder.user;
+        const user=await User.findByIdAndUpdate(userId,{ $pull: { orders: orderId }});
+        res
+          .status(200)
+          .send({ success: true, message: "Order deleted successfully" });
+
+      } else {
+        res.status(404).send({ success: false, message: "Order not found" });
+      }
+    } catch (error) {
+      console.error("Error deleting order:", error.message);
       next(error);
     }
   },
