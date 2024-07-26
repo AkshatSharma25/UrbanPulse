@@ -20,6 +20,7 @@ const ProductSectionCarousel = (props) => {
           `${GetProductByCategory}/${props.title}`
         );
         setproducts(response.data.data);
+        // console.log(products);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error);

@@ -73,7 +73,7 @@ function ProductPage() {
             <div className="md:flex-1 px-4">
               <div className="h-[460px] overflow-hidden rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
                 <img
-                  className=" w-full h-full object-cover"
+                  className=" w-full h-full object-cover overflow-hidden"
                   src={product.imageUrls[0]}
                   alt="Product Image"
                 />

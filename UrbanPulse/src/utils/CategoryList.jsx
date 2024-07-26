@@ -11,7 +11,7 @@ export const Categories = [
     },
     { 
       id: 3, 
-      title: "beauty & health", 
+      title: "beauty and health", 
       description: "Beauty & Health category" 
     },
     { 
@@ -51,7 +51,7 @@ export const Categories = [
     },
     { 
       id: 11, 
-      title: "travel & lifestyle", 
+      title: "travel and lifestyle", 
       description: "Travel & Lifestyle category" 
     },
     { 

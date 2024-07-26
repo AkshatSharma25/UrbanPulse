@@ -10,7 +10,7 @@ const RightSection = () => {
         </div>
         <ProductSectionCarousel title={"clothing"}  black={true} />
         <ProductSectionCarousel title={"electronics"}  black={true}/>
-        <ProductSectionCarousel title={"travel & lifestyle"} black={true} />
+        <ProductSectionCarousel title={"travel and lifestyle"} black={true} />
       </div>
     </div>
   )
