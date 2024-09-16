@@ -28,6 +28,9 @@ const MONGO_URL=process.env.MONGO_URL;
 mongoose.connect(MONGO_URL).then(console.log("connected to database"))
 
 
+app.get("/",(req,res)=>{
+  res.send("hello world");
+})
 app.post('/upload', Upload.single('file'), (req, res) => {
     res.send("success");
   });
