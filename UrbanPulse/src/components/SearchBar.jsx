@@ -24,6 +24,7 @@ const SearchBar = () => {
     const products = await axios.get(
       `${SearchProduct}/${e.target.search.value}`
     );
+    console.log(e.target.search.value)
     products.data.data.map((product) => {
       dispatch(addItem(product));
     });

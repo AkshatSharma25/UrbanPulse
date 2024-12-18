@@ -84,7 +84,7 @@ const ProductController = {
     try {
       const { keyword } = req.params;
       const FoundProducts = await Product.find({
-        $text: { $search: keyword },
+        name:keyword,
       });
       if (FoundProducts) {
         res.status(200).send({ success: true, data: FoundProducts });

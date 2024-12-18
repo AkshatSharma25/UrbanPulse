@@ -19,16 +19,16 @@ const Footer = () => {
             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
             <nav className="list-none mb-10">
               <li>
-                <a href="#" className="text-white hover:text-gray-800">First Link</a>
+                <a href="/" className="text-white hover:text-gray-800">Electronics</a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-800">Second Link</a>
+                <a href="/" className="text-white hover:text-gray-800">Health and Lifestyle</a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-800">Third Link</a>
+                <a href="/" className="text-white hover:text-gray-800">Clothes</a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-800">Fourth Link</a>
+                <a href="/" className="text-white hover:text-gray-800">Others</a>
               </li>
             </nav>
           </div>
@@ -37,16 +37,16 @@ const Footer = () => {
             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
             <nav className="list-none mb-10">
               <li>
-                <a href="#" className="text-white hover:text-gray-800">First Link</a>
+                <a href="/" className="text-white hover:text-gray-800">Health and Beauty</a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-800">Second Link</a>
+                <a href="/" className="text-white hover:text-gray-800">Mobile Phones</a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-800">Third Link</a>
+                <a href="/" className="text-white hover:text-gray-800">Home and Decor</a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-800">Fourth Link</a>
+                <a href="/" className="text-white hover:text-gray-800">Accessories</a>
               </li>
             </nav>
           </div>
@@ -54,16 +54,33 @@ const Footer = () => {
             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
             <nav className="list-none mb-10">
               <li>
-                <a href="#" className="text-white hover:text-gray-800">First Link</a>
+                <a href="/" className="text-white hover:text-gray-800">Gadgets</a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-800">Second Link</a>
+                <a href="/" className="text-white hover:text-gray-800">Services</a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-800">Third Link</a>
+                <a href="/" className="text-white hover:text-gray-800">Music and More</a>
               </li>
               <li>
-                <a href="#" className="text-white hover:text-gray-800">Fourth Link</a>
+                <a href="/" className="text-white hover:text-gray-800">Laptops</a>
+              </li>
+            </nav>
+          </div>
+          <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">OTHER LINKS</h2>
+            <nav className="list-none mb-10">
+              <li>
+                <a href="/profile" className="text-white hover:text-gray-800">Profile</a>
+              </li>
+              <li>
+                <a href="/" className="text-white hover:text-gray-800">About</a>
+              </li>
+              <li>
+                <a href="/search" className="text-white hover:text-gray-800">Search Products</a>
+              </li>
+              <li>
+                <a href="/" className="text-white hover:text-gray-800">Customer</a>
               </li>
             </nav>
           </div>

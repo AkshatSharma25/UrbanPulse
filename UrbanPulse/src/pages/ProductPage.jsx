@@ -55,7 +55,8 @@ function ProductPage() {
       }
     }
   }
-  const handlePurchase=()=>{
+  const handlePurchase = () => {
+    navigate("/login");
     navigate(`/order/${product._id}`);
   }
   return isLoading ? (

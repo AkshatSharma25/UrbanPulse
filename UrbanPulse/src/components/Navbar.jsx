@@ -1,22 +1,13 @@
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-} from "@headlessui/react";
+
 import cart from "../assets/cart.svg";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import search from "../assets/search.svg";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const navigation = [
-  { name: "Home", href: "#", current: true },
+  { name: "Home", href: "/", current: true },
   { name: "Profile", href: "/profile", current: false },
   { name: "My Orders", href: "/profile", current: false },
-  { name: "About", href: "#", current: false },
+  { name: "About", href: "/", current: false },
 ];
 import logo from "../assets/logo.png";
 function classNames(...classes) {

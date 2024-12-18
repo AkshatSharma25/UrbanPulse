@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import defaultProfile from "../assets/account.svg";
 import LeftSection from "../components/ProfilePageComponents/LeftSection";
 import RightSection from "../components/ProfilePageComponents/RightSection";
+import Footer from "../components/Footer.jsx";
+import NavBar from "../components/Navbar.jsx";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -29,15 +31,19 @@ const ProfilePage = () => {
     MyParse();
   }, []);
   const content = (
-    <div className="flex">
-      <LeftSection
-        id={user._id}
-        username={user.username}
-        profilePicture={profileImage}
-        email={user.email}
-        address={user.address}
-      />
-      <RightSection />
+    <div>
+      <NavBar/>
+      <div className="flex">
+        <LeftSection
+          id={user._id}
+          username={user.username}
+          profilePicture={profileImage}
+          email={user.email}
+          address={user.address}
+        />
+        <RightSection />
+      </div>
+      <Footer />
     </div>
   );
   return (

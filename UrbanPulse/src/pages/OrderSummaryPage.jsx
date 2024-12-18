@@ -3,6 +3,8 @@ import logo from "../assets/logo.png";
 import { useParams } from "react-router-dom";
 import { GetProduct } from "../utils/APIroutes";
 import axios from "axios";
+import NavBar from '../components/Navbar'
+import Footer from '../components/Footer'
 import { useNavigate } from "react-router-dom";
 import { orderProduct } from "../utils/APIroutes";
 const OrderSummaryPage = () => {
@@ -12,7 +14,7 @@ const OrderSummaryPage = () => {
   const [Product, setProduct] = useState({
     name: "loading...",
     tagline: "loading...",
-    imageUrls: ["http://localhost:3050/uploads/xyz.png"],
+    imageUrls: ["http://localhost:3000/uploads/xyz.png"],
   });
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({
@@ -86,6 +88,9 @@ const OrderSummaryPage = () => {
       const user = JSON.parse(localStorage.getItem("user"));
       // console.log(user);
       setUser(user);
+      if (user === null) {
+        navigate("/login");
+      }
     };
     fetchUserDetails();
     fetchProductDetails();
@@ -96,31 +101,32 @@ const OrderSummaryPage = () => {
       {isLoading ? (
         <div>Loading</div>
       ) : (
-        <div>
-          <div className="w-[100vw] flex justify-center items-center gap-3 bg-blue-600 h-16">
+          <div>
+            <NavBar/>
+          <div className=" flex justify-center items-center gap-3 bg-blue-600 h-16">
             <img src={logo} width={70} alt="" />
             <div className="flex justify-center flex-col">
               <div className="text-white text-3xl">UrbanPulse - Checkout</div>
               <div className="text-white">Order Summary</div>
             </div>
           </div>
-          <div className="flex w-full p-8 h-[90vh]">
-            <div className="left bg-gray-100 w-2/3 flex p-4">
+          <div className="flex w-full p-8 h-[83vh]">
+            <div className="left bg-gray-100 h-full w-2/3 flex p-2">
               <div className="image bg-white  max-w-[600px]">
                 <img src={Product.imageUrls[0]} alt="" />
               </div>
               <div className="description p-8">
-                <div className="text-2xl mb-3">{Product.name}</div>
-                <div className="text-sm mb-10 flex pr-0 flex-wrap lg:max-w-[200px]">
+                <div className="text-2xl">{Product.name}</div>
+                <div className="text-sm mb-4 flex pr-0 flex-wrap ">
                   {Product.description}
                 </div>
                 <div className="flex w-full">
                   <div className="text-xl">
-                    price
+                    Price
                     <div className="text-3xl">₹ {Product.price}</div>
                   </div>
                   <div className="ml-8">
-                    quantity
+                    Quantity
                     <div className="flex gap-5">
                       <button
                         className="text-2xl text-gray-900"
@@ -130,7 +136,7 @@ const OrderSummaryPage = () => {
                       >
                         -
                       </button>
-                      <div className="text-3xl">{quantity}</div>
+                      <div className="text-2xl">{quantity}</div>
                       <button
                         className="text-2xl text-gray-900"
                         onClick={() => {
@@ -143,15 +149,15 @@ const OrderSummaryPage = () => {
                   </div>
                 </div>
                 <div>
-                  <div className="mt-12 text-2xl">items total</div>
+                  <div className="mt-12 text-xl">Items Total</div>
                   <div className="text-3xl mb-4">
                     ₹ {Product.price * quantity}
                   </div>
                 </div>
                 <div>
                   <div className="text-xl">Delivery Address:</div>
-                  <div>{`${user.username}`}</div>
-                  <div>{`${user.address}`}</div>
+                  <div>{`${user.username.toUpperCase()}`}</div>
+                  <div>{`${user.address.toUpperCase()}`}</div>
                 </div>
                 <div className="mt-4 text-sm">
                   <div>*free shipping for your first order</div>
@@ -162,39 +168,39 @@ const OrderSummaryPage = () => {
                     }}
                     className="cursor-pointer text-red-400 bg-blue-200 rounded-md text-xl text-center m-3"
                   >
-                    Cancel
+                    Cancel Order
                   </div>
                 </div>
               </div>
             </div>
-            <div className="right bg-gray-200 w-1/3 p-8">
-              <div className="text-3xl m-2 w-full text-center">
+            <div className="right bg-gray-200 w-1/3 h-[90%] p-4">
+              <div className="text-3xl w-full text-center">
                 Order Summary
               </div>
-              <div className="m-2 text-xl w-full text-center text-red-400">
+              <div className=" text-xl w-full text-center text-red-400">
                 Subtotal : ₹ {Product.price * quantity}
               </div>
-              <div className="m-2 text-xl w-full text-center text-red-400">
+              <div className=" text-xl w-full text-center text-red-400">
                 Please Select Payment Option
               </div>
-              <div className="bg-blue-400 w-full h-20 m-2 p-3 rounded-md">
+              <div className="bg-blue-400 text-xl flex items-center justify-center w-full h-16 mt-2 p-3 rounded-md">
+                Google Pay
+              </div>
+              <div className="bg-blue-400 w-full text-xl flex items-center justify-center h-16 mt-2 p-3 rounded-md">
+                Axis Bank Credit
+              </div>
+              <div className="bg-blue-400 w-full text-xl flex items-center justify-center h-16 mt-2 p-3 rounded-md">
                 PayPal
               </div>
-              <div className="bg-blue-400 w-full h-20 m-2 p-3 rounded-md">
-                PayPal
-              </div>
-              <div className="bg-blue-400 w-full h-20 m-2 p-3 rounded-md">
-                PayPal
-              </div>
-              <div className="bg-blue-400 w-full h-20 m-2 p-3 rounded-md">
-                PayPal
+              <div className="bg-blue-400 w-full text-xl flex items-center justify-center h-16 mt-2 p-3 rounded-md">
+                Cash on Delivery
               </div>
               <div className="text-xs">*Terms and Conditions apply</div>
               <div
                 onClick={() => {
                   handleCheckout();
                 }}
-                className="bg-red-400 w-full h-20 ml-2 p-3 rounded-md text-2xl text-white flex justify-center items-center cursor-pointer"
+                className="bg-red-400 w-full h-12  p-3 rounded-md text-2xl text-white flex justify-center items-center cursor-pointer"
               >
                 CheckOut
               </div>
@@ -202,7 +208,9 @@ const OrderSummaryPage = () => {
           </div>
         </div>
       )}
+      <Footer/>
     </div>
+
   );
 };
 
