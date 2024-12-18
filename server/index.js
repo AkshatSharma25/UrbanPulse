@@ -1,6 +1,7 @@
 const express = require("express");
 const helmet=require("helmet");
-const cors=require("cors");
+const cors = require("cors");
+const { parse } = require("url");
 const path=require("path");
 const morgan=require("morgan");
 const mongoose=require("mongoose");
@@ -38,6 +39,7 @@ app.post('/upload', Upload.single('file'), (req, res) => {
 app.listen(PORT,()=>{
     console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-
-module.exports = app;
+module.exports = (req, res) => {
+  const parsedUrl = parse(req.url, true);
+  createServer(app).emit("request", req, res, parsedUrl);
+};
