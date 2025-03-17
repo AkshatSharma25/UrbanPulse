@@ -25,7 +25,7 @@ app.use("/api/orders", OrderRouter);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 const PORT = process.env.PORT || 3000;
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = "mongodb+srv://akshat45:sharmakshat19@cluster0.yoirmew.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose
   .connect(MONGO_URL)
